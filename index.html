@@ -8,44 +8,335 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
        (function(){
-          // Tu Public Key de la captura de pantalla
+          // Tu Public Key real
           emailjs.init("MCQutcuKJGJUq5XKg");
        })();
     </script>
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
-        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
         
-        header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
-        nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: #2d5016; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; }
-        .nav-links a:hover { color: #4a7c2c; }
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
         
-        .hero { background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%); color: white; padding: 150px 2rem 100px; text-align: center; margin-top: 70px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
-        .services { max-width: 1200px; margin: 0 auto; padding: 80px 2rem; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #2d5016; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center; }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2d5016;
+        }
         
-        .contact { max-width: 700px; margin: 0 auto; padding: 80px 2rem; }
-        .contact-form { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #2d5016; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: inherit; }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
         
-        .submit-button { background: #4a7c2c; color: white; padding: 15px 40px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%; }
-        .submit-button:hover { background: #2d5016; }
-        .submit-button:disabled { background: #999; cursor: not-allowed; }
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #4a7c2c;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c2c 100%);
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #2d5016;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Services Section */
+        .services {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2d5016;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            background: #f8f9fa;
+            padding: 80px 2rem;
+        }
+        
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #4a7c2c;
+        }
+        
+        .benefit-card h4 {
+            color: #2d5016;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .benefit-card p {
+            color: #666;
+        }
+        
+        /* Zone Section */
+        .zone {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+            text-align: center;
+        }
+        
+        .zone-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            background: #f8f9fa;
+            padding: 80px 2rem;
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d5016;
+        }
+        
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 2rem;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d5016;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c2c;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .submit-button {
+            background: #4a7c2c;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            background: #2d5016;
+        }
 
-        /* Estilos para el mensaje de éxito */
-        #success-msg {
+        .submit-button:disabled {
+            background: #ccc;
+        }
+
+        /* ESTILO NUEVO: Mensaje de éxito visual */
+        #success-alert {
             display: none;
             background: #d4edda;
             color: #155724;
@@ -56,110 +347,298 @@
             border: 1px solid #c3e6cb;
             font-weight: 600;
         }
-
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); z-index: 1000; }
         
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        /* Footer */
+        footer {
+            background: #2d5016;
+            color: white;
+            padding: 40px 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.2rem; }
+            .nav-links { display: none; }
+            .section-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
-
     <header>
         <nav>
             <div class="logo">SERVICIOS RAYMOND</div>
             <ul class="nav-links">
                 <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#zona">Zona</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Servicios Raymond</h1>
-        <p>Expertos en Trabajos en Altura</p>
+        <h1>Raymond</h1>
+        <h2>Trabajos Profesionales en Altura</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Seguridad, experiencia y resultados impecables en cada servicio</p>
+        <a href="#contacto" class="cta-button">Solicitar Presupuesto</a>
     </section>
 
     <section id="servicios" class="services">
         <h2 class="section-title">Nuestros Servicios</h2>
+        <p class="section-subtitle">Soluciones profesionales en altura para tu hogar o empresa</p>
+        
         <div class="services-grid">
-            <div class="service-card"><h3>Poda en Altura</h3><p>Seguridad y precisión en cada corte.</p></div>
-            <div class="service-card"><h3>Final de Obra</h3><p>Limpieza profunda profesional.</p></div>
-            <div class="service-card"><h3>Vidrios en Edificios</h3><p>Brillo impecable en las alturas.</p></div>
+            <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Limpieza Final de Obra</h3>
+                <p>Nuestra empresa se encarga de limpiar profundamente todo lo que otros dejan atrás. Eliminamos restos de materiales, polvo y suciedad post-construcción para entregar el espacio impecable.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🌳</div>
+                <h3>Poda de Árboles en Altura</h3>
+                <p>Poda técnica y profesional con equipamiento certificado. Mantenemos la salud de tus árboles garantizando la seguridad de tu propiedad.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🪟</div>
+                <h3>Limpieza de Vidrios en Altura</h3>
+                <p>Limpieza impecable de vidrios en edificios, casas y locales comerciales. Resultados cristalinos con total seguridad.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🏊</div>
+                <h3>Limpieza de Piletas</h3>
+                <p>Mantenimiento completo de piletas. Agua cristalina y sistema en perfecto estado para que disfrutes sin preocupaciones.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="beneficios" class="benefits">
+        <div class="benefits-container">
+            <h2 class="section-title">¿Por Qué Elegir Servicios Raymond?</h2>
+            <p class="section-subtitle">Compromiso con la excelencia en cada trabajo</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h4>✅ Experiencia Certificada</h4>
+                    <p>Años de trayectoria en trabajos en altura con resultados comprobados</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🔒 Seguridad Garantizada</h4>
+                    <p>Equipamiento profesional certificado y protocolos de seguridad estrictos</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>⚡ Respuesta Rápida</h4>
+                    <p>Atención ágil y coordinación eficiente para tu comodidad</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>💯 Trabajo Impecable</h4>
+                    <p>Nos aseguramos de que cada trabajo quede perfecto y supere tus expectativas</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>💰 Presupuestos Claros</h4>
+                    <p>Sin sorpresas ni costos ocultos. Transparencia total en cada servicio</p>
+                </div>
+                <div class="benefit-card">
+                    <h4>🤝 Atención Personalizada</h4>
+                    <p>Tratamos cada proyecto como único, adaptándonos a tus necesidades</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="zona" class="zone">
+        <h2 class="section-title">Zona de Trabajo</h2>
+        <p class="section-subtitle">Cobertura en toda Buenos Aires y alrededores</p>
+        <div class="zone-content">
+            <h3 style="color: #2d5016; margin-bottom: 20px;">Trabajamos en toda la zona metropolitana</h3>
+            <p style="font-size: 1.1rem; color: #666;">
+                Brindamos nuestros servicios en <strong>CABA, Zona Norte, Zona Sur y Zona Oeste</strong>. 
+                Nos desplazamos sin problemas para garantizar la mejor atención sin importar dónde te encuentres.
+            </p>
+            <p style="margin-top: 20px; color: #4a7c2c; font-weight: 600;">📍 Buenos Aires, Argentina</p>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="faq-container">
+            <h2 class="section-title">Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Resolvemos tus dudas</p>
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">¿Cuánto cuesta el servicio? <span>+</span></button>
+                <div class="faq-answer"><p>El costo varía según el tipo de trabajo, altura y complejidad. Te ofrecemos un presupuesto sin cargo adaptado a tus necesidades.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">¿Qué equipamiento utilizan? <span>+</span></button>
+                <div class="faq-answer"><p>Trabajamos con equipamiento profesional certificado: arneses de seguridad, cuerdas de alta resistencia, cascos y herramientas especializadas.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">¿Tienen seguro? <span>+</span></button>
+                <div class="faq-answer"><p>Sí, contamos con todos los seguros correspondientes para trabajos en altura, garantizando total tranquilidad.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">¿Cuánto demoran los trabajos? <span>+</span></button>
+                <div class="faq-answer"><p>Depende de la magnitud. Una poda estándar lleva 2-4 horas. Te damos un tiempo estimado al evaluar tu caso.</p></div>
+            </div>
         </div>
     </section>
 
     <section id="contacto" class="contact">
-        <h2 class="section-title">Contactanos</h2>
+        <h2 class="section-title">Contactate con Nosotros</h2>
+        <p class="section-subtitle">Envíanos tu consulta y te responderemos por correo a la brevedad.</p>
         
-        <div id="success-msg">¡Email enviado con éxito! Gabriel te contactará pronto.</div>
+        <div id="success-alert">¡Email enviado con éxito! Gabriel te responderá pronto.</div>
 
         <div class="contact-form">
             <form id="contact-form">
                 <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" name="user_name" required>
+                    <label>Nombre completo</label>
+                    <input type="text" name="user_name" id="user_name" required>
                 </div>
                 <div class="form-group">
                     <label>Teléfono</label>
-                    <input type="tel" name="user_phone" required>
+                    <input type="tel" name="user_phone" id="user_phone" required>
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" name="user_email" required>
+                    <label>Tu Email</label>
+                    <input type="email" name="user_email" id="user_email" required>
                 </div>
                 <div class="form-group">
-                    <label>Servicio</label>
-                    <input type="text" name="service_type" placeholder="Ej: Poda, Vidrios...">
+                    <label>Servicio de interés</label>
+                    <input type="text" name="service_type" id="service_type" placeholder="Poda, fin de obra, vidrios, piletas...">
                 </div>
                 <div class="form-group">
                     <label>Mensaje</label>
-                    <textarea name="message" rows="5" required></textarea>
+                    <textarea name="message" id="message" placeholder="Contanos qué necesitás..." required></textarea>
                 </div>
-                <button type="submit" class="submit-button" id="submit-btn">Enviar Mensaje</button>
+                <button type="submit" class="submit-button" id="submit-btn">Enviar Consulta por Email</button>
             </form>
         </div>
     </section>
 
-    <a href="https://wa.me/5491161074320?text=Hola%20Raymond,%20vengo%20de%20la%20web." class="whatsapp-float" target="_blank">💬</a>
+    <footer>
+        <div class="footer-content">
+            <h3>SERVICIOS RAYMOND</h3>
+            <p style="margin: 20px 0;">Trabajos profesionales en altura con seguridad y calidad</p>
+            <div class="footer-links">
+                <a href="#servicios">Servicios</a>
+                <a href="#beneficios">Beneficios</a>
+                <a href="#zona">Zona</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div style="margin-top: 30px;">
+                <p>📞 +54 9 11 6107-4320</p>
+                <p>📍 Buenos Aires, Argentina</p>
+                <p>📧 gabrielraymond840@gmail.com</p>
+                <p>Instagram: @servicios_raymond</p>
+            </div>
+            <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">© 2025 Servicios Raymond. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5491161074320?text=Hola%20Raymond,%20vengo%20de%20la%20p%C3%A1gina%20web.%20Me%20gustar%C3%ADa%20realizar%20una%20consulta." 
+       class="whatsapp-float" target="_blank">💬</a>
 
     <script>
-        const btn = document.getElementById('submit-btn');
-        const form = document.getElementById('contact-form');
-        const successMsg = document.getElementById('success-msg');
+        function toggleFAQ(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('span');
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('span').textContent = '+';
+                }
+            });
+            answer.classList.toggle('active');
+            icon.textContent = answer.classList.contains('active') ? '-' : '+';
+        }
 
-        form.addEventListener('submit', function(event) {
+        // Lógica de Envío de EmailJS - CON TUS DATOS REALES
+        const btn = document.getElementById('submit-btn');
+        const alertBox = document.getElementById('success-alert');
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            
             btn.disabled = true;
             btn.textContent = 'Enviando...';
 
-            const serviceID = 'service_ccte8nc';
-            const templateID = 'template_x1a5wuy';
+            const serviceID = 'service_ccte8nc'; 
+            const templateID = 'template_x1a5wuy'; 
 
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
                     btn.disabled = false;
-                    btn.textContent = 'Enviar Mensaje';
+                    btn.textContent = 'Enviar Consulta por Email';
                     
                     // Mostrar mensaje de éxito visual
-                    successMsg.style.display = 'block';
+                    alertBox.style.display = 'block';
                     
-                    // Limpiar el formulario
-                    form.reset();
+                    // Resetear formulario
+                    this.reset();
 
-                    // Ocultar el mensaje después de 5 segundos
+                    // Ocultar mensaje después de 5 segundos
                     setTimeout(() => {
-                        successMsg.style.display = 'none';
+                        alertBox.style.display = 'none';
                     }, 5000);
                     
                 }, (err) => {
                     btn.disabled = false;
-                    btn.textContent = 'Enviar Mensaje';
-                    alert('Hubo un error al enviar. Intenta por WhatsApp por favor.');
+                    btn.textContent = 'Enviar Consulta por Email';
+                    alert('Error al enviar el mail. Por favor intenta por WhatsApp.');
                     console.error('Error de EmailJS:', err);
                 });
         });
     </script>
-
 </body>
 </html>
