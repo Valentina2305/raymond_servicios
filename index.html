@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Servicios Raymond | Trabajos Profesionales en Altura</title>
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // IMPORTANTE: Reemplaza con tu Public Key de EmailJS
+          emailjs.init("TU_PUBLIC_KEY");
+       })();
+    </script>
+
     <style>
         * {
             margin: 0;
@@ -123,38 +132,43 @@
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-top: 50px;
         }
         
         .service-card {
             background: white;
-            padding: 40px;
+            padding: 40px 30px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             text-align: center;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            border: 1px solid #eee;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
+            border-color: #4a7c2c;
+            box-shadow: 0 10px 30px rgba(74, 124, 44, 0.15);
         }
         
         .service-icon {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 20px;
+            display: block;
         }
         
         .service-card h3 {
             color: #2d5016;
             margin-bottom: 15px;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
         
         .service-card p {
             color: #666;
-            line-height: 1.8;
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
         
         /* Benefits Section */
@@ -188,76 +202,6 @@
             font-size: 1.2rem;
         }
         
-        .benefit-card p {
-            color: #666;
-        }
-        
-        /* Zone Section */
-        .zone {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 2rem;
-            text-align: center;
-        }
-        
-        .zone-content {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-top: 30px;
-        }
-        
-        /* FAQ Section */
-        .faq {
-            background: #f8f9fa;
-            padding: 80px 2rem;
-        }
-        
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            background: white;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .faq-question {
-            padding: 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            border: none;
-            width: 100%;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2d5016;
-        }
-        
-        .faq-question:hover {
-            background: #f8f9fa;
-        }
-        
-        .faq-answer {
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-        
-        .faq-answer.active {
-            padding: 20px;
-            max-height: 500px;
-        }
-        
         /* Contact Section */
         .contact {
             max-width: 900px;
@@ -285,24 +229,14 @@
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #4a7c2c;
-        }
-        
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
+            font-family: inherit;
         }
         
         .submit-button {
@@ -317,39 +251,9 @@
             transition: background 0.3s;
             width: 100%;
         }
-        
-        .submit-button:hover {
-            background: #2d5016;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2d5016;
-            color: white;
-            padding: 40px 2rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-        }
-        
-        .footer-links a:hover {
-            text-decoration: underline;
+
+        .submit-button:disabled {
+            background: #ccc;
         }
         
         /* WhatsApp Button */
@@ -369,42 +273,25 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             z-index: 1000;
             text-decoration: none;
-            transition: transform 0.3s;
         }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero h2 {
-                font-size: 1.2rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
+
+        /* FAQ */
+        .faq-item { background: white; margin-bottom: 10px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .faq-question { padding: 20px; width: 100%; text-align: left; background: none; border: none; cursor: pointer; font-weight: 600; color: #2d5016; display: flex; justify-content: space-between; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: 0.3s ease; }
+        .faq-answer.active { padding: 20px; max-height: 200px; }
+
+        footer { background: #2d5016; color: white; padding: 40px 2rem; text-align: center; margin-top: 50px;}
     </style>
 </head>
 <body>
+
     <header>
         <nav>
             <div class="logo">SERVICIOS RAYMOND</div>
             <ul class="nav-links">
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#beneficios">Beneficios</a></li>
-                <li><a href="#zona">Zona</a></li>
-                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -419,217 +306,109 @@
 
     <section id="servicios" class="services">
         <h2 class="section-title">Nuestros Servicios</h2>
-        <p class="section-subtitle">Soluciones profesionales en altura para tu hogar o empresa</p>
+        <p class="section-subtitle">Soluciones profesionales para mantener tu propiedad en perfecto estado</p>
         
         <div class="services-grid">
             <div class="service-card">
+                <div class="service-icon">🏗️</div>
+                <h3>Limpieza Final de Obra</h3>
+                <p>Nos encargamos de eliminar todo rastro de suciedad, polvo y restos tras una construcción o reforma. Dejamos el lugar impecable y listo para habitar.</p>
+            </div>
+
+            <div class="service-card">
                 <div class="service-icon">🌳</div>
-                <h3>Poda de Árboles en Altura</h3>
-                <p>Poda técnica y profesional con equipamiento certificado. Mantenemos la salud de tus árboles garantizando la seguridad de tu propiedad.</p>
+                <h3>Poda en Altura</h3>
+                <p>Poda técnica y profesional con equipamiento certificado. Cuidamos la salud de tus árboles y la seguridad de tu entorno.</p>
             </div>
             
             <div class="service-card">
                 <div class="service-icon">🪟</div>
-                <h3>Limpieza de Vidrios en Altura</h3>
-                <p>Limpieza impecable de vidrios en edificios, casas y locales comerciales. Resultados cristalinos con total seguridad.</p>
+                <h3>Vidrios en Altura</h3>
+                <p>Limpieza de cristales en edificios y casas. Utilizamos técnicas de acceso seguro para un acabado cristalino y sin marcas.</p>
             </div>
             
             <div class="service-card">
                 <div class="service-icon">🏊</div>
-                <h3>Limpieza de Piletas</h3>
-                <p>Mantenimiento completo de piletas. Agua cristalina y sistema en perfecto estado para que disfrutes sin preocupaciones.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="beneficios" class="benefits">
-        <div class="benefits-container">
-            <h2 class="section-title">¿Por Qué Elegir Servicios Raymond?</h2>
-            <p class="section-subtitle">Compromiso con la excelencia en cada trabajo</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h4>✅ Experiencia Certificada</h4>
-                    <p>Años de trayectoria en trabajos en altura con resultados comprobados</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h4>🔒 Seguridad Garantizada</h4>
-                    <p>Equipamiento profesional certificado y protocolos de seguridad estrictos</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h4>⚡ Respuesta Rápida</h4>
-                    <p>Atención ágil y coordinación eficiente para tu comodidad</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h4>💯 Trabajo Impecable</h4>
-                    <p>Nos aseguramos de que cada trabajo quede perfecto y supere tus expectativas</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h4>💰 Presupuestos Claros</h4>
-                    <p>Sin sorpresas ni costos ocultos. Transparencia total en cada servicio</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <h4>🤝 Atención Personalizada</h4>
-                    <p>Tratamos cada proyecto como único, adaptándonos a tus necesidades</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="zona" class="zone">
-        <h2 class="section-title">Zona de Trabajo</h2>
-        <p class="section-subtitle">Cobertura en toda Buenos Aires y alrededores</p>
-        
-        <div class="zone-content">
-            <h3 style="color: #2d5016; margin-bottom: 20px;">Trabajamos en toda la zona metropolitana</h3>
-            <p style="font-size: 1.1rem; color: #666;">
-                Brindamos nuestros servicios en <strong>CABA, Zona Norte, Zona Sur y Zona Oeste</strong>. 
-                Nos desplazamos sin problemas para garantizar la mejor atención sin importar dónde te encuentres.
-            </p>
-            <p style="margin-top: 20px; color: #4a7c2c; font-weight: 600;">
-                📍 Buenos Aires, Argentina
-            </p>
-        </div>
-    </section>
-
-    <section id="faq" class="faq">
-        <div class="faq-container">
-            <h2 class="section-title">Preguntas Frecuentes</h2>
-            <p class="section-subtitle">Resolvemos tus dudas</p>
-            
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFAQ(this)">
-                    ¿Cuánto cuesta el servicio?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>El costo varía según el tipo de trabajo, altura y complejidad. Te ofrecemos un presupuesto sin cargo adaptado a tus necesidades. Contactanos para una evaluación personalizada.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFAQ(this)">
-                    ¿Qué equipamiento utilizan?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Trabajamos con equipamiento profesional certificado: arneses de seguridad, cuerdas de alta resistencia, cascos, y todas las herramientas especializadas para cada tipo de trabajo en altura.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFAQ(this)">
-                    ¿Tienen seguro?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Sí, contamos con todos los seguros correspondientes para trabajos en altura, garantizando total tranquilidad tanto para nosotros como para nuestros clientes.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFAQ(this)">
-                    ¿Cuánto demoran los trabajos?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Depende de la magnitud del trabajo. Una poda estándar puede llevar entre 2-4 horas, mientras que trabajos más complejos pueden requerir un día completo. Te damos un tiempo estimado al evaluar tu caso.</p>
-                </div>
+                <h3>Mantenimiento de Piletas</h3>
+                <p>Limpieza profunda y tratamiento de agua. Disfrutá de una pileta cristalina y saludable durante todo el año.</p>
             </div>
         </div>
     </section>
 
     <section id="contacto" class="contact">
         <h2 class="section-title">Contactate con Nosotros</h2>
-        <p class="section-subtitle">Envíanos tu consulta y te responderemos por correo a la brevedad.</p>
+        <p class="section-subtitle">Completá el formulario y nos llegará tu consulta por correo.</p>
         
         <div class="contact-form">
-            <form action="https://formspree.io/f/gabrielraymond840@gmail.com" method="POST">
+            <form id="contact-form">
                 <div class="form-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <label>Nombre completo</label>
+                    <input type="text" name="user_name" id="user_name" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono" required>
+                    <label>Teléfono</label>
+                    <input type="tel" name="user_phone" id="user_phone" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Tu Email</label>
-                    <input type="email" id="email" name="_replyto" required>
+                    <label>Tu Email</label>
+                    <input type="email" name="user_email" id="user_email" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="servicio">Servicio de interés</label>
-                    <input type="text" id="servicio" name="servicio" placeholder="Poda, limpieza de vidrios, piletas...">
+                    <label>Servicio</label>
+                    <select name="service_type" id="service_type">
+                        <option value="Fin de Obra">Limpieza Final de Obra</option>
+                        <option value="Poda">Poda en Altura</option>
+                        <option value="Vidrios">Limpieza de Vidrios</option>
+                        <option value="Piletas">Mantenimiento de Piletas</option>
+                    </select>
                 </div>
                 
                 <div class="form-group">
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" placeholder="Contanos qué necesitás..." required></textarea>
+                    <label>Mensaje</label>
+                    <textarea name="message" id="message" placeholder="Contanos qué necesitás..." required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-button">Enviar Consulta por Email</button>
+                <button type="submit" class="submit-button" id="submit-btn">Enviar Consulta</button>
             </form>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <h3>SERVICIOS RAYMOND</h3>
-            <p style="margin: 20px 0;">Trabajos profesionales en altura con seguridad y calidad</p>
-            
-            <div class="footer-links">
-                <a href="#servicios">Servicios</a>
-                <a href="#beneficios">Beneficios</a>
-                <a href="#zona">Zona</a>
-                <a href="#faq">FAQ</a>
-                <a href="#contacto">Contacto</a>
-            </div>
-            
-            <div style="margin-top: 30px;">
-                <p>📞 +54 9 11 6107-4320</p>
-                <p>📍 Buenos Aires, Argentina</p>
-                <p>📧 gabrielraymond840@gmail.com</p>
-                <p>Instagram: @servicios_raymond</p>
-            </div>
-            
-            <p style="margin-top: 30px; font-size: 0.9rem; opacity: 0.8;">
-                © 2025 Servicios Raymond. Todos los derechos reservados.
-            </p>
-        </div>
+        <p>📞 +54 9 11 6107-4320 | 📧 gabrielraymond840@gmail.com</p>
+        <p style="margin-top: 10px; opacity: 0.7;">© 2025 Servicios Raymond. Buenos Aires, Argentina.</p>
     </footer>
 
-    <a href="https://wa.me/5491161074320?text=Hola%20Raymond,%20necesito%20consultar%20por%20un%20servicio" 
-       class="whatsapp-float" 
-       target="_blank" 
-       aria-label="Contactar por WhatsApp">
-        💬
-    </a>
+    <a href="https://wa.me/5491161074320?text=Hola%20Raymond,%20necesito%20consultar%20por%20un%20servicio" class="whatsapp-float" target="_blank">💬</a>
 
     <script>
-        function toggleFAQ(button) {
-            const answer = button.nextElementSibling;
-            const icon = button.querySelector('span');
-            
-            document.querySelectorAll('.faq-answer').forEach(item => {
-                if (item !== answer) {
-                    item.classList.remove('active');
-                    item.previousElementSibling.querySelector('span').textContent = '+';
-                }
-            });
-            
-            answer.classList.toggle('active');
-            icon.textContent = answer.classList.contains('active') ? '-' : '+';
-        }
+        // Lógica EmailJS
+        const btn = document.getElementById('submit-btn');
 
-        // El manejo del envío ahora lo hace Formspree directamente mediante el action del form.
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+
+            const serviceID = 'TU_SERVICE_ID'; // REEMPLAZAR
+            const templateID = 'TU_TEMPLATE_ID'; // REEMPLAZAR
+
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    btn.disabled = false;
+                    btn.textContent = 'Enviar Consulta';
+                    alert('¡Mensaje enviado con éxito! Gabriel te responderá pronto.');
+                    this.reset();
+                }, (err) => {
+                    btn.disabled = false;
+                    btn.textContent = 'Enviar Consulta';
+                    alert('Error al enviar. Por favor intenta por WhatsApp.');
+                    console.error(err);
+                });
+        });
     </script>
 </body>
 </html>
