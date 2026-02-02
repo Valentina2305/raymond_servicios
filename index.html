@@ -17,6 +17,7 @@
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: #333;
+            scroll-behavior: smooth;
         }
         
         /* Header */
@@ -314,6 +315,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: background 0.3s;
+            width: 100%;
         }
         
         .submit-button:hover {
@@ -395,13 +397,12 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav>
             <div class="logo">SERVICIOS RAYMOND</div>
             <ul class="nav-links">
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#beneficios">valentina jaime</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
                 <li><a href="#zona">Zona</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contacto">Contacto</a></li>
@@ -409,7 +410,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero">
         <h1>Raymond</h1>
         <h2>Trabajos Profesionales en Altura</h2>
@@ -417,7 +417,6 @@
         <a href="#contacto" class="cta-button">Solicitar Presupuesto</a>
     </section>
 
-    <!-- Services Section -->
     <section id="servicios" class="services">
         <h2 class="section-title">Nuestros Servicios</h2>
         <p class="section-subtitle">Soluciones profesionales en altura para tu hogar o empresa</p>
@@ -443,7 +442,6 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
     <section id="beneficios" class="benefits">
         <div class="benefits-container">
             <h2 class="section-title">¿Por Qué Elegir Servicios Raymond?</h2>
@@ -483,7 +481,6 @@
         </div>
     </section>
 
-    <!-- Zone Section -->
     <section id="zona" class="zone">
         <h2 class="section-title">Zona de Trabajo</h2>
         <p class="section-subtitle">Cobertura en toda Buenos Aires y alrededores</p>
@@ -500,7 +497,6 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section id="faq" class="faq">
         <div class="faq-container">
             <h2 class="section-title">Preguntas Frecuentes</h2>
@@ -545,26 +541,15 @@
                     <p>Depende de la magnitud del trabajo. Una poda estándar puede llevar entre 2-4 horas, mientras que trabajos más complejos pueden requerir un día completo. Te damos un tiempo estimado al evaluar tu caso.</p>
                 </div>
             </div>
-            
-            <div class="faq-item">
-                <button class="faq-question" onclick="toggleFAQ(this)">
-                    ¿Trabajan sábados y domingos?
-                    <span>+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Sí, trabajamos de lunes a sábado. Para trabajos urgentes, consultanos disponibilidad para domingos.</p>
-                </div>
-            </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contacto" class="contact">
         <h2 class="section-title">Contactate con Nosotros</h2>
-        <p class="section-subtitle">Respondemos a la brevedad. También podés escribirnos directamente por WhatsApp</p>
+        <p class="section-subtitle">Envíanos tu consulta y te responderemos por correo a la brevedad.</p>
         
         <div class="contact-form">
-            <form onsubmit="handleSubmit(event)">
+            <form action="https://formspree.io/f/gabrielraymond840@gmail.com" method="POST">
                 <div class="form-group">
                     <label for="nombre">Nombre completo</label>
                     <input type="text" id="nombre" name="nombre" required>
@@ -576,8 +561,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
+                    <label for="email">Tu Email</label>
+                    <input type="email" id="email" name="_replyto" required>
                 </div>
                 
                 <div class="form-group">
@@ -590,12 +575,11 @@
                     <textarea id="mensaje" name="mensaje" placeholder="Contanos qué necesitás..." required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-button">Enviar Consulta</button>
+                <button type="submit" class="submit-button">Enviar Consulta por Email</button>
             </form>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <h3>SERVICIOS RAYMOND</h3>
@@ -622,7 +606,6 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/5491161074320?text=Hola%20Raymond,%20necesito%20consultar%20por%20un%20servicio" 
        class="whatsapp-float" 
        target="_blank" 
@@ -635,7 +618,6 @@
             const answer = button.nextElementSibling;
             const icon = button.querySelector('span');
             
-            // Close all other FAQs
             document.querySelectorAll('.faq-answer').forEach(item => {
                 if (item !== answer) {
                     item.classList.remove('active');
@@ -643,37 +625,11 @@
                 }
             });
             
-            // Toggle current FAQ
             answer.classList.toggle('active');
             icon.textContent = answer.classList.contains('active') ? '-' : '+';
         }
-        
-        function handleSubmit(e) {
-            e.preventDefault();
-            
-            const nombre = document.getElementById('nombre').value;
-            const telefono = document.getElementById('telefono').value;
-            const servicio = document.getElementById('servicio').value;
-            const mensaje = document.getElementById('mensaje').value;
-            
-            const whatsappMessage = `Hola Brian! Me llamo ${nombre}.%0A%0AEstoy interesado en: ${servicio}%0A%0A${mensaje}%0A%0AMi teléfono: ${telefono}`;
-            
-            window.open(`https://wa.me/5491161074320?text=${whatsappMessage}`, '_blank');
-        }
-        
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+
+        // El manejo del envío ahora lo hace Formspree directamente mediante el action del form.
     </script>
 </body>
 </html>
