@@ -604,7 +604,7 @@
             icon.textContent = answer.classList.contains('active') ? '-' : '+';
         }
 
-        // Lógica de Envío de EmailJS - CON TUS DATOS REALES
+        // Lógica de Envío Reforzada
         const btn = document.getElementById('submit-btn');
         const alertBox = document.getElementById('success-alert');
 
@@ -618,25 +618,26 @@
 
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
+                    console.log('¡ÉXITO!'); // Para ver en la consola
                     btn.disabled = false;
                     btn.textContent = 'Enviar Consulta por Email';
                     
-                    // Mostrar mensaje de éxito visual
+                    // Mostramos el cartel verde
                     alertBox.style.display = 'block';
                     
-                    // Resetear formulario
+                    // Limpiamos los campos
                     this.reset();
 
-                    // Ocultar mensaje después de 5 segundos
+                    // Ocultamos el cartel después de 7 segundos
                     setTimeout(() => {
                         alertBox.style.display = 'none';
-                    }, 5000);
+                    }, 7000);
                     
                 }, (err) => {
                     btn.disabled = false;
                     btn.textContent = 'Enviar Consulta por Email';
-                    alert('Error al enviar el mail. Por favor intenta por WhatsApp.');
-                    console.error('Error de EmailJS:', err);
+                    alert('Error: ' + JSON.stringify(err));
+                    console.error('FALLO:', err);
                 });
         });
     </script>
